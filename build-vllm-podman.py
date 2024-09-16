@@ -1508,7 +1508,7 @@ COPY docker/entrypoint.d/ /opt/nvidia/entrypoint.d/
     # The CPU-only build uses ubuntu as the base image, and so the
     # entrypoint files are not available in /opt/nvidia in the base
     # image, so we must provide them ourselves.
-    if not enable_gpu:
+    if not enable_gpu and not enable_rocm:
         df += """
 COPY docker/cpu_only/ /opt/nvidia/
 ENTRYPOINT ["/opt/nvidia/nvidia_entrypoint.sh"]
