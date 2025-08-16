@@ -12,7 +12,7 @@
           "informationUri": "https://www.glog.ai",
           "rules": [
             {
-              "id": "glog-f93227e3-39f3-496a-8fff-8a7ec3660e22",
+              "id": "glog-f353bbb8-cdb1-4386-9e01-b4b11257031f",
               "help": {
                 "text": "",
                 "markdown": "## Description\n\n\"Potential Unsafe Use of Temporary File/Directory\" vulnerability in Python refers to the insecure creation or use of temporary files or directories. This can lead to a variety of security issues, such as race conditions, information disclosure, or privilege escalation. In the provided code snippet, the vulnerability arises from the use of `listdir(\"/dev/shm\")` which lists all shared memory segments. An attacker could potentially manipulate these segments leading to a security breach.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to use secure methods for creating and using temporary files or directories. Python's `tempfile` module provides functions for creating secure temporary files and directories. It's also important to set appropriate permissions for temporary files and directories to prevent unauthorized access.\n\n## Source Code Fix Recommendation\n\nInstead of using `listdir(\"/dev/shm\")`, use the `tempfile` module to securely create and use temporary files and directories. Here's an example:\n\n```python\nimport tempfile\n\n# Create a temporary directory using the context manager\nwith tempfile.TemporaryDirectory() as tmpdirname:\n    print('created temporary directory', tmpdirname)\n```\n\nIn this example, a temporary directory is securely created and its name is printed. The directory and its contents are automatically cleaned up when the context is exited.\n\n## Library Dependencies\n\nThe code example requires the `os` module from Python's standard library.\n\n## References\n\n- [CWE-377: Insecure Temporary File](https://cwe.mitre.org/data/definitions/377.html)"
@@ -35,7 +35,7 @@
       "language": "en-US",
       "results": [
         {
-          "ruleId": "glog-f93227e3-39f3-496a-8fff-8a7ec3660e22",
+          "ruleId": "glog-f353bbb8-cdb1-4386-9e01-b4b11257031f",
           "kind": "fail",
           "level": "warning",
           "message": {
